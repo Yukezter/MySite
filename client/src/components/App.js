@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles'
