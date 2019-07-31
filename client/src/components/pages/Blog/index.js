@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-
 import axios from 'axios'
 
-import { Box, Typography } from '@material-ui/core'
+import { Box } from '@material-ui/core'
+
+import BlogGrid from './BlogGrid'
 
 // import useStyles from './styles'
 
@@ -20,14 +21,8 @@ export default props => {
   })
 
   return (
-    <Box pt={{ xs: 8, sm: '120px' }}>
-      <Typography
-        component="h1"
-        variant="h5"
-        align="center"
-      >
-      Coming soon!...
-      </Typography>
+    <Box pt={{ xs: 10, sm: '120px' }}>
+      <BlogGrid />
     </Box>
   )
 }

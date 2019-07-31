@@ -1,5 +1,6 @@
 require('dotenv').config({ path: `${__dirname}/.env` })
 const path = require('path')
+const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 
@@ -16,6 +17,11 @@ if (process.env.NODE_ENV === "production") {
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
+
+// mongoose.connect(
+//   process.env.MONGODB_URI || process.env.MONGODB_URI_LOCAL, 
+//   { useNewUrlParser: true, autoIndex: false, useFindAndModify: false },
+// )
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, console.log(`Server started on port ${PORT}`))

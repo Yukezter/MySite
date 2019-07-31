@@ -1,42 +1,58 @@
 export default [
   {
-    img: `${process.env.PUBLIC_URL}/images/study-chat.png`,
+    imgSrc: `/images/study-chat.png`,
+    href: 'https://github.com/choco-taco/testyoselves',
     title: 'Study chat',
-    link: 'https://github.com/choco-taco/testyoselves',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
   {
-    img: `${process.env.PUBLIC_URL}/images/space-dashboard.png`,
+    imgSrc: `/images/space-dashboard.png`,
+    href: 'https://github.com/choco-taco/space-dashboard',
     title: 'Space Dashboard',
-    link: 'https://github.com/choco-taco/space-dashboard',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
   {
-    img: `${process.env.PUBLIC_URL}/images/nfl-statgraph.png`,
+    imgSrc: `/images/nfl-statgraph.png`,
+    href: 'https://github.com/Yukezter/nfl-statgraph',
     title: 'NFL StatGraph',
-    link: 'https://github.com/Yukezter/nfl-statgraph',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
   {
-    img: `${process.env.PUBLIC_URL}/images/stock-watch.png`,
+    imgSrc: `/images/stock-watch.png`,
+    href: 'https://github.com/Yukezter/stocker',
     title: 'StockWatch',
-    link: 'https://github.com/Yukezter/stocker',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
   {
-    img: `${process.env.PUBLIC_URL}/images/liri.png`,
+    imgSrc: `/images/liri.png`,
+    href: 'https://github.com/Yukezter/liri-node-api',
     title: 'LIRI',
-    link: 'https://github.com/Yukezter/liri-node-api',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
   {
-    img: `${process.env.PUBLIC_URL}/images/space-blog2.png`,
+    imgSrc: `/images/space-blog2.png`,
+    href: 'https://github.com/Yukezter/space-blog',
     title: 'Space Blog',
-    link: 'https://github.com/Yukezter/space-blog',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
   {
-    img: `${process.env.PUBLIC_URL}/images/star-wars-rpg.png`,
+    imgSrc: `/images/star-wars-rpg.png`,
+    href: 'https://github.com/Yukezter/unit-4-game/tree/gh-pages',
     title: 'Star Wars RPG',
-    link: 'https://github.com/Yukezter/unit-4-game/tree/gh-pages',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
   {
-    img: `${process.env.PUBLIC_URL}/images/trivia.png`,
+    imgSrc: `/images/trivia.png`,
+    href: 'https://github.com/Yukezter/TriviaGame/tree/gh-pages',
     title: 'Trivia Game',
-    link: 'https://github.com/Yukezter/TriviaGame/tree/gh-pages',
+    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem, aliquam voluptatem laboriosam nihil in recusandae totam facilis sequi provident nobis.',
+    date: '01/01/2020'
   },
 ]

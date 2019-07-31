@@ -42,7 +42,7 @@ const defaultTheme = createMuiTheme({
 })
 
 // Now that the theme breakpoints have been defined by MUI,
-// We can add typography breakpoints as overrides
+// We can add typography breakpoints as overrides if we want
 const { breakpoints } = defaultTheme
 
 const theme = {
@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: '100vh'
   },
   contentWrapper: {
-    paddingBottom: 80
+    paddingBottom: 100
   }
 }))
 
