@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import clsx from 'clsx'
@@ -48,11 +48,15 @@ export default props => {
   const theme = useTheme()
   const [isOpen, setMenuState] = useState(false)
 
-  window.addEventListener('resize', e => {
-    if (e.target.innerWidth > theme.breakpoints.values.sm && isOpen) {
-      document.body.style.overflow = 'visible'
-      setMenuState(false)
-    }
+  useEffect(() => {
+    const handleWindowResize = window.addEventListener('resize', e => {
+      console.log('resizing...')
+      if (e.target.innerWidth > theme.breakpoints.values.sm && isOpen) {
+        document.body.style.overflow = 'visible'
+        setMenuState(false)
+      }
+    })
+    return () => window.removeEventListener('resize', handleWindowResize)
   })
 
   const handleMenuClick = () => {

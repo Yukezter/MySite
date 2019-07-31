@@ -29,8 +29,8 @@ export default props => {
       <Container style={{ height: '100%' }}>
         <div className={classes.footerContent}>
               <div className={classes.socialIcons}>
-                {socialIcons.map(icon => (
-                  <Link href={icon.href} target="_blank">
+                {socialIcons.map((icon, index) => (
+                  <Link href={icon.href} target="_blank" key={index}>
                     <img 
                       src={`${process.env.PUBLIC_URL}${icon.imgSrc}`} 
                       alt={icon.imgAlt} 

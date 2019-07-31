@@ -22,8 +22,8 @@ export default props => {
   return (
     <Box pt={{ xs: 8, sm: '120px' }}>
       <Typography
-        component="h5"
-        variant="h6"
+        component="h1"
+        variant="h5"
         align="center"
       >
       Coming soon!...

@@ -1,20 +1,26 @@
 import React from 'react'
 
-import { GridList, GridListTile, GridListTileBar, Container, Link } from '@material-ui/core'
+import { 
+  GridList, GridListTile, GridListTileBar, 
+  Container, Link, useTheme, useMediaQuery } from '@material-ui/core'
+
 import projects from './projects'
 
 import useStyles from './styles'
 
 export default props => {
+
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
 
   return (
     <section>
       <Container>
         <div className={classes.root}>
-          <GridList cellHeight={'auto'} spacing={1} className={classes.gridList}>
+          <GridList cellHeight={'auto'} spacing={3} className={classes.gridList}>
             {projects.map(tile => (
-              <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1} >
+              <GridListTile key={tile.img} cols={matches ? 1 : 2} rows={matches ? 1 : 2} >
                 <Link href={tile.link} target="_blank">
                   <img src={tile.img} alt={tile.title} className={classes.tileImg} />
                   <GridListTileBar

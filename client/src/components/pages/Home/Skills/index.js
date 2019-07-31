@@ -26,7 +26,7 @@ export default props => {
                   component="h2"
                   variant="h4"
                 >
-                  My toolshed!
+                  My tools...
                 </Typography>
               </Box>
             </Grid>
@@ -34,7 +34,7 @@ export default props => {
           <Box my={{ xs: 5 }}>
             <Grid container>
               {icons.map((icon, index) => (
-                <Grid item xs={6} md={3} align="center" className={classes.gridIcon} key={index}>
+                <Grid item xs={6} md={3} className={classes.gridIcon} key={index}>
                   <i className={`devicon-${icon} ${classes.stackIcons}`}></i>
                 </Grid>
               ))}

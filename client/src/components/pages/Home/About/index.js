@@ -35,12 +35,14 @@ export default props => {
                   component="h2"
                   variant="h4"
                 >
-                  About me.
+                  About me
                 </Typography>
               </Box>
             </Grid>
+          </Grid>
+          <Grid container>
             {about.map((item, index) => (
-              <Grid item xs={12} sm={8} md={4} key={index}>
+              <Grid item xs={12} sm={8} md={4} style={{ margin: '0 auto' }} key={index}>
                 <Box textAlign="center">
                   <IconButton
                     color="inherit"

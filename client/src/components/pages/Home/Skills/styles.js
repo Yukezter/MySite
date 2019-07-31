@@ -9,13 +9,13 @@ export default makeStyles(theme => ({
     transition: 'transform 0.2s',
     [theme.breakpoints.up('sm')]: {
       height: 250,
-      '&:hover, :focus': {
-        transform: 'scale(1.1)',
-        boxShadow: `5px 5px 5px 5px black`
-      },
     },
     [theme.breakpoints.up('md')]: {
       height: 220,
+      '&:hover, :focus': {
+        transform: 'scale(1.1)',
+        boxShadow: `5px 3px 3px 3px black`
+      },
     },
   },
   stackIcons: {
