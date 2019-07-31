@@ -84,14 +84,13 @@ const useStyles = makeStyles(theme => ({
 // Whenever a BrowserRouter Link is clicked,
 // We want to move window back to the top of page
 const ScrollToTop = ({ children, location: { pathname } }) => {
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 
   return children
 }
-
-withRouter(ScrollToTop)
 
 export default props => {
   const classes = useStyles()
