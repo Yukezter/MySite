@@ -13,7 +13,7 @@ export default () => {
   useEffect(() => {
 
     axios
-      .get('/portfolio')
+      .get('/api/portfolio')
       .then(data => {
         console.log(data.data)
       })

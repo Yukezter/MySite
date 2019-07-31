@@ -13,7 +13,7 @@ export default props => {
   useEffect(() => {
 
     axios
-      .get('/home')
+      .get('/api/home')
       .then(data => {
         console.log(data.data)
       })

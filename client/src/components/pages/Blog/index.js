@@ -11,7 +11,7 @@ export default props => {
   useEffect(() => {
 
     axios
-      .get('/blog')
+      .get('/api/blog')
       .then(data => {
         console.log(data.data)
       })

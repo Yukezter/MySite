@@ -6,7 +6,7 @@ const app = express()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-app.use(require('./routes/index'))
+app.use('/api', require('./routes/index'))
 app.use('/admin', require('./routes/admin'))
 
 if (process.env.NODE_ENV === "production") {
