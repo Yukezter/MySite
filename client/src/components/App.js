@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles'
@@ -70,6 +70,7 @@ const theme = {
 }
 
 // Site wrapper to keep footer at bottom of body
+// Just in case some pages don't have much content 
 const useStyles = makeStyles(theme => ({
   siteWrapper: {
     position: 'relative',
@@ -79,6 +80,18 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 100
   }
 }))
+
+// Whenever a BrowserRouter Link is clicked,
+// We want to move window back to the top of page
+const ScrollToTop = ({ children, location: { pathname } }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return children
+}
+
+withRouter(ScrollToTop)
 
 export default props => {
   const classes = useStyles()
@@ -90,15 +103,17 @@ export default props => {
             <Header />
             <div className={classes.contentWrapper}>
               <Switch>
-                <Route exact path="/" render={props => (
-                  <Home {...props} />
-                )} />
-                <Route exact path="/blog" render={props => (
-                  <Blog {...props} />
-                )} />
-                <Route exact path="/portfolio" component={props => (
-                  <Portfolio {...props} />
-                )} />
+                <ScrollToTop>
+                  <Route exact path="/" render={props => (
+                    <Home {...props} />
+                  )} />
+                  <Route exact path="/blog" render={props => (
+                    <Blog {...props} />
+                  )} />
+                  <Route exact path="/portfolio" component={props => (
+                    <Portfolio {...props} />
+                  )} />
+                </ScrollToTop>
               </Switch>
             </div>
             <Footer />
