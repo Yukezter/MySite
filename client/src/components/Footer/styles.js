@@ -14,15 +14,13 @@ export default makeStyles(theme => ({
     position: 'relative',
     height: '100%'
   },
-  brand: {
-    position: 'absolute',
-    left: 0
-  },
   socialIcons: {
     position: 'absolute',
     right: 0,
   },
   socialIcon: {
-    margin: 'auto 10px'
+    margin: 'auto 10px',
+    height: 25, 
+    width: 25
   }
 }))

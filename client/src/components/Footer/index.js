@@ -1,8 +1,26 @@
 import React from 'react';
 
-import { Container, Typography, Link } from '@material-ui/core'
+import { Container, Link } from '@material-ui/core'
 
 import useStyles from './styles'
+
+const socialIcons = [
+  {
+    href: 'https://github.com/Yukezter',
+    imgSrc: '/social-icons/github.svg',
+    imgAlt: 'My Github'
+  },
+  {
+    href: 'https://www.linkedin.com/in/bryan-hinchliffe',
+    imgSrc: '/social-icons/linkedin.svg',
+    imgAlt: 'My Linked'
+  },
+  {
+    href: 'https://www.instagram.com/yukezter/?hl=en',
+    imgSrc: '/social-icons/instagram.svg',
+    imgAlt: 'My Instagram'
+  }
+]
 
 export default props => {
   const classes = useStyles()
@@ -10,24 +28,16 @@ export default props => {
     <footer className={classes.footer}>
       <Container style={{ height: '100%' }}>
         <div className={classes.footerContent}>
-              <Typography
-                component="h4"
-                variant="h4"
-                color="primary"
-                className={classes.brand}
-              >
-                BH
-              </Typography>
               <div className={classes.socialIcons}>
-                <Link href="https://github.com/Yukezter" target="_blank">
-                  <img src={`${process.env.PUBLIC_URL}/social-icons/github.svg`} alt="My Github" className={classes.socialIcon}/>
-                </Link>
-                <Link href="https://www.linkedin.com/in/bryan-hinchliffe" target="_blank">
-                  <img src={`${process.env.PUBLIC_URL}/social-icons/linkedin.svg`} alt="My LinkedIn" style={{ height: 25, width: 25 }} className={classes.socialIcon}/>
-                </Link>
-                <Link href="https://www.instagram.com/yukezter/?hl=en" target="_blank">
-                  <img src={`${process.env.PUBLIC_URL}/social-icons/instagram.svg`} alt="My Instagram" style={{ height: 25, width: 25 }} className={classes.socialIcon}/>
-                </Link>
+                {socialIcons.map(icon => (
+                  <Link href={icon.href} target="_blank">
+                    <img 
+                      src={`${process.env.PUBLIC_URL}${icon.imgSrc}`} 
+                      alt={icon.imgAlt} 
+                      className={classes.socialIcon}
+                    />
+                  </Link>
+                ))}
               </div>
         </div>
       </Container>
