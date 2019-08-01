@@ -14,7 +14,7 @@ export default makeStyles(theme => ({
       height: 220,
       '&:hover, :focus': {
         transform: 'scale(1.1)',
-        boxShadow: `5px 3px 3px 3px black`
+        boxShadow: theme.shadows[23]
       },
     },
   },

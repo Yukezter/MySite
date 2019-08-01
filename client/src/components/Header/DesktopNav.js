@@ -52,8 +52,10 @@ export default props => {
                   noWrap
                   key={index}
                 >
-                  <Link to={link.path} 
+                  <Link 
+                    to={link.path} 
                     className={clsx(props.classes.navLink, scrolledDown && props.classes.navLinkScroll)}
+                    onClick={props.changeLoadingState(true)}
                   >
                     {link.text}                            
                   </Link>

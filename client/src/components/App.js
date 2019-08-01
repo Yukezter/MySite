@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom'
+import clsx from 'clsx'
 
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { Box, createMuiTheme, makeStyles } from '@material-ui/core'
-import { ThemeProvider } from '@material-ui/styles'
-
+import { Box, makeStyles } from '@material-ui/core'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -12,124 +10,142 @@ import Home from './pages/Home'
 import Blog from './pages/Blog/index'
 import Portfolio from './pages/Portfolio'
 
-const defaultTheme = createMuiTheme({
-  palette: {
-    text: {
-      primary: '#f5f1ed'
-    },
-    background: {
-      default: '#252323'
-    },
-    common: {
-      black: '#101010',
-      white: '#f5f1ed'
-    },
-    primary: {
-      main: '#70798c',
-    },
-    secondary: {
-      main: '#70798c'
-    }
+const routes = [
+  {
+    path: '/',
+    component: Home
   },
-  typography: {
-    fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
+  {
+    path: '/blog',
+    component: Blog
   },
-  props: {
-    MuiButtonBase: {
-      disableRipple: true,
-    },
+  {
+    path: '/portfolio',
+    component: Portfolio
   },
-})
-
-// Now that the theme breakpoints have been defined by MUI,
-// We can add typography breakpoints as overrides if we want
-
-const { breakpoints } = defaultTheme
-
-const theme = {
-  ...defaultTheme,
-  overrides: {
-    MuiTypography: {
-      h1: {
-        [breakpoints.up('sm')]: {
-        },
-        [breakpoints.up('md')]: {
-        },
-        [breakpoints.up('lg')]: {
-        },
-      },
-      h2: {
-        [breakpoints.up('sm')]: {
-        },
-        [breakpoints.up('md')]: {
-        },
-        [breakpoints.up('lg')]: {
-        },
-      }
-    }
-  }
-}
+]
 
 // Site wrapper to keep footer at bottom of body
 // Just in case some pages don't have much content
+
+// Also for top level load state
 
 const useStyles = makeStyles(theme => ({
   siteWrapper: {
     position: 'relative',
     minHeight: '100vh',
-    // backgroundColor: theme.palette.common.black,
   },
   contentWrapper: {
-    paddingBottom: 100
+    paddingBottom: 100,
+  },
+  loaderWrapper: {
+    position: 'absolute',
+    minHeight: '100vh',
+    width: '100%',
+    backgroundColor: theme.palette.background.default,
+    zIndex: 2000,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loader: {
+    height: 80,
+    width: 80,
+    display: 'none'
+  },
+  hide: {
+    display: 'none',
+  },
+  show: {
+    display: 'initial',
   }
 }))
 
-const SiteWrapper = ({ children }) => {
+const SiteWrapper = ({ children, pathname }) => {
+
   const classes = useStyles()
+
+  const [pageLoading, setPageLoadingState] = useState(true)
+
+  document.body.style.overflow = 'hidden'
+
+  const changeLoadingState = state => () => {
+    document.body.style.overflow = 'hidden'
+    setPageLoadingState(state)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPageLoadingState(false)
+      document.body.style.overflow = 'visible'
+    }, 3000)
+  }, [pathname])
+
+  const [loaderImgLoading, setLoaderImgLoadingState] = useState(true)
+
+  const handleOnLoad = () => {
+    setLoaderImgLoadingState(false)
+  }
+
   return (
     <Box className={classes.siteWrapper}>
-      <Header />
-      <Box className={classes.contentWrapper}>
-        {children}
+      <Box className={clsx(classes.loaderWrapper, !pageLoading && classes.hide)}>
+        <img 
+          src={`${process.env.PUBLIC_URL}/images/loader.svg`} 
+          alt="Loading page"
+          className={clsx(classes.loader, !loaderImgLoading && classes.show)}
+          onLoad={handleOnLoad}
+        />
       </Box>
+      <Header changeLoadingState={changeLoadingState} />
+        <Box className={classes.contentWrapper}>
+          {children}
+        </Box>
       <Footer />
     </Box>
   )
 }
 
-// Whenever a BrowserRouter Link is clicked,
-// We want to move window back to the top of page
+const SiteWrapperWithRouter = withRouter(({ children, location: { pathname }}) => (
+  <SiteWrapper pathname={pathname}>
+    {children}
+  </SiteWrapper>
+))
 
-const ScrollToTop = ({ children, location: { pathname } }) => {
+const Effects = ({ children, location: { pathname } }) => {
 
+  // Whenever BrowserRouter path changes,
+
+  // We want to move window back to the top of page
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [pathname])
+  }, [pathname])  
 
   return children
 }
 
 export default props => {
+
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-          <SiteWrapper>
-            <Switch>
-              <ScrollToTop>
-                <Route exact path="/" render={props => (
-                  <Home {...props} />
-                )} />
-                <Route exact path="/blog" render={props => (
-                  <Blog {...props} />
-                )} />
-                <Route exact path="/portfolio" component={props => (
-                  <Portfolio {...props} />
-                )} />
-              </ScrollToTop>
-            </Switch>
-          </SiteWrapper>
-      </ThemeProvider>
+      <SiteWrapperWithRouter>
+        <Switch>
+          <Effects>
+            {routes.map((route, index) => (
+              <Route 
+                exact 
+                path={route.path} 
+                render={props => (
+                  <route.component 
+                    {...props} 
+                  />
+                )}
+                key={index}
+              />
+            ))}
+          </Effects>
+        </Switch>
+      </SiteWrapperWithRouter>
     </BrowserRouter>
   )
 }

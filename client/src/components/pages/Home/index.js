@@ -11,14 +11,12 @@ import Skills from './Skills'
 export default props => {
 
   useEffect(() => {
-
     axios
       .get('/api/home')
       .then(data => {
         console.log(data.data)
       })
       .catch(error => console.log(error))
-
   })
 
   return (

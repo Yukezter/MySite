@@ -8,17 +8,15 @@ import ProjectsGrid from './ProjectsGrid'
 
 // import useStyles from './styles'
 
-export default () => {
+export default props => {
 
   useEffect(() => {
-
     axios
       .get('/api/portfolio')
       .then(data => {
         console.log(data.data)
       })
       .catch(error => console.log(error))
-
   })
 
   return (

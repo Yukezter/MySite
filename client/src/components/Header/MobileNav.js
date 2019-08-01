@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
 import clsx from 'clsx'
 
 import { Typography, Fade, IconButton, useTheme } from '@material-ui/core'
+import './menuIcon.css'
 
 const MenuButton = props => {
   return (
@@ -23,25 +23,36 @@ const MenuButton = props => {
   )
 }
 
-const FullScreenNav = props => (
-  <Fade in={props.isOpen} timeout={200}>
-    <div className={props.classes.navMenu}>
-      {props.links.map((link, index) => (
-          <Typography
-          className={props.classes.navHeading}
-          component="h3"
-          variant="h4"
-          noWrap
-          key={index}
-          >
-            <Link to={link.path} className={props.classes.navLink} onClick={props.handleMenuClick}>
-              {link.text}                                    
-            </Link>
-          </Typography>
-        ))}
-    </div>
-  </Fade>
-)
+const FullScreenNav = props => {
+
+  const handleLinkClick = () => {
+    props.handleMenuClick()
+    props.changeLoadingState(true)()
+  }
+
+  return (
+    <Fade in={props.isOpen} timeout={200}>
+      <div className={props.classes.navMenu}>
+        {props.links.map((link, index) => (
+            <Typography
+            className={props.classes.navHeading}
+            component="h3"
+            variant="h4"
+            noWrap
+            key={index}
+            >
+              <Link 
+                to={link.path} 
+                className={props.classes.navLink} 
+                onClick={handleLinkClick}>
+                {link.text}                                    
+              </Link>
+            </Typography>
+          ))}
+      </div>
+    </Fade>
+  )
+}
 
 export default props => {
 
@@ -80,6 +91,7 @@ export default props => {
         classes={props.classes}
         isOpen={isOpen}
         handleMenuClick={handleMenuClick}
+        changeLoadingState={props.changeLoadingState}
         links={props.links}
       />
     </React.Fragment>
