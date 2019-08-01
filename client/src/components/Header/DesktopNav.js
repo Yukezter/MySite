@@ -55,7 +55,6 @@ export default props => {
                   <Link 
                     to={link.path} 
                     className={clsx(props.classes.navLink, scrolledDown && props.classes.navLinkScroll)}
-                    onClick={props.changeLoadingState(true, link.path)}
                   >
                     {link.text}                            
                   </Link>

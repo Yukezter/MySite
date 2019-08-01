@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
@@ -17,7 +17,7 @@ export default props => {
         console.log(data.data)
       })
       .catch(error => console.log(error))
-  })
+  }, [])
 
   return (
     <React.Fragment>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Box, Container, Grid, Typography, Link, Button, useTheme, useMediaQuery } from '@material-ui/core'
 
@@ -11,6 +11,14 @@ export default props => {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
+
+  // const [state, setState] = useState(0)
+
+  // useEffect(() => {
+  //   if (state.imagesLoaded === projects.length) { 
+  //     props.changeLoadingState(false)()
+  //   }
+  // }, [state])
 
   return (
     <section>

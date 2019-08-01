@@ -27,8 +27,8 @@ export default props => {
 
   return (
     <React.Fragment>
-      <DesktopNav classes={classes} links={links} changeLoadingState={props.changeLoadingState} />
-      <MobileNav classes={classes} links={links} changeLoadingState={props.changeLoadingState}/>
+      <DesktopNav classes={classes} links={links} />
+      <MobileNav classes={classes} links={links} />
     </React.Fragment>
   )
 }
