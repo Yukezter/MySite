@@ -61,7 +61,6 @@ export default props => {
 
   useEffect(() => {
     const handleWindowResize = window.addEventListener('resize', e => {
-      console.log('resizing...')
       if (e.target.innerWidth > theme.breakpoints.values.sm && isOpen) {
         document.body.style.overflow = 'visible'
         setMenuState(false)

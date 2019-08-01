@@ -68,7 +68,6 @@ const SiteWrapper = ({ children, pathname }) => {
   const [pageLoading, setPageLoadingState] = useState(true)
 
   const changeLoadingState = (state, path) => () => {
-    console.log(pathname, path)
     if (pathname !== path) {
       document.body.style.overflow = 'hidden'
       setPageLoadingState(state)
@@ -90,20 +89,40 @@ const SiteWrapper = ({ children, pathname }) => {
   }
 
   return (
+    // <Box className={classes.siteWrapper}>
+    //   <Box className={clsx(classes.loaderWrapper, !pageLoading && classes.hide)}>
+    //     <img 
+    //       src={`${process.env.PUBLIC_URL}/images/loader.svg`}
+    //       alt="Loading page"
+    //       className={clsx(classes.loader, !loaderImgLoading && classes.show)}
+    //       onLoad={handleOnLoad}
+    //     />
+    //   </Box>
+    //   <Header changeLoadingState={changeLoadingState} />
+    //     <Box className={classes.contentWrapper}>
+    //       {children}
+    //     </Box>
+    //   <Footer />
+    // </Box>
     <Box className={classes.siteWrapper}>
-      <Box className={clsx(classes.loaderWrapper, !pageLoading && classes.hide)}>
-        <img 
-          src={`${process.env.PUBLIC_URL}/images/loader.svg`} 
-          alt="Loading page"
-          className={clsx(classes.loader, !loaderImgLoading && classes.show)}
-          onLoad={handleOnLoad}
-        />
-      </Box>
-      <Header changeLoadingState={changeLoadingState} />
-        <Box className={classes.contentWrapper}>
-          {children}
+      {pageLoading ? (
+        <Box className={clsx(classes.loaderWrapper)}>
+          <img 
+            src={`${process.env.PUBLIC_URL}/images/loader.svg`}
+            alt="Loading page"
+            className={clsx(classes.loader, !loaderImgLoading && classes.show)}
+            onLoad={handleOnLoad}
+          />
         </Box>
-      <Footer />
+      ) : (
+        <React.Fragment>
+          <Header changeLoadingState={changeLoadingState} />
+            <Box className={classes.contentWrapper}>
+              {children}
+            </Box>
+          <Footer />
+        </React.Fragment>
+      )}
     </Box>
   )
 }
