@@ -25,9 +25,9 @@ const MenuButton = props => {
 
 const FullScreenNav = props => {
 
-  const handleLinkClick = () => {
+  const handleLinkClick = path => () => {
     props.handleMenuClick()
-    props.changeLoadingState(true)()
+    props.changeLoadingState(true, path)()
   }
 
   return (
@@ -44,7 +44,7 @@ const FullScreenNav = props => {
               <Link 
                 to={link.path} 
                 className={props.classes.navLink} 
-                onClick={handleLinkClick}>
+                onClick={handleLinkClick(link.path)}>
                 {link.text}                                    
               </Link>
             </Typography>

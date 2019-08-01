@@ -67,14 +67,16 @@ const SiteWrapper = ({ children, pathname }) => {
 
   const [pageLoading, setPageLoadingState] = useState(true)
 
-  document.body.style.overflow = 'hidden'
-
-  const changeLoadingState = state => () => {
-    document.body.style.overflow = 'hidden'
-    setPageLoadingState(state)
+  const changeLoadingState = (state, path) => () => {
+    console.log(pathname, path)
+    if (pathname !== path) {
+      document.body.style.overflow = 'hidden'
+      setPageLoadingState(state)
+    }
   }
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden'
     setTimeout(() => {
       setPageLoadingState(false)
       document.body.style.overflow = 'visible'
