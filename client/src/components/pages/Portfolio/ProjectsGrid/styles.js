@@ -12,7 +12,7 @@ export default makeStyles(theme => ({
     margin: '0 auto'
   },
   date: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: theme.palette.background.default,
     padding: '0 10px'
   },
   projectLink: {
