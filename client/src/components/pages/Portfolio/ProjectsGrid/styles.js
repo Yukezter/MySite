@@ -6,7 +6,7 @@ export default makeStyles(theme => ({
     height: '45%'
   },
   middleLine: {
-    borderBottom: `2px solid ${theme.palette.primary.main}`,
+    borderBottom: `2px solid ${theme.palette.grey[700]}`,
     lineHeight: '0.1em',
     width: '80%',
     margin: '0 auto'

@@ -5,7 +5,7 @@ export default makeStyles(theme => ({
     height: 120,
     maxHeight: 120,
     width: '100%',
-    zIndex: 1,
+    zIndex: 1000,
     backgroundColor: 'transparent',
     boxShadow: 'none',
     transition: 'background-color 0.5s, max-height 0.5s',
@@ -25,7 +25,6 @@ export default makeStyles(theme => ({
   navBarLogo: {
     position: 'absolute',
     left: 0,
-    zIndex: 1001,
     color: theme.palette.secondary.main
   },
   navMenuIcon: {
