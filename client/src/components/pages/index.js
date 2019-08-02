@@ -1,11 +1,14 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // import { makeStyles } from '@material-ui/styles'
 
 import Home from './Home'
 import Blog from './Blog'
 import Portfolio from './Portfolio'
+
+import { loading, doneLoading } from '../../actions/loadActions'
 
 const routes = [
   {
@@ -22,49 +25,15 @@ const routes = [
   },
 ]
 
-// const useStyles = makeStyles(theme => ({
-//   loaderWrapper: {
-//     position: 'absolute',
-//     minHeight: '100vh',
-//     width: '100%',
-//     backgroundColor: theme.palette.background.default,
-//     zIndex: 2000,
-//     display: 'flex',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   loader: {
-//     height: 80,
-//     width: 80,
-//     display: 'none'
-//   },
-//   hide: {
-//     display: 'none',
-//   },
-//   show: {
-//     display: 'initial',
-//   }
-// }))
-
-export default props => {
+const Pages = ({ loading, doneLoading, pathname }) => {
 
   // const classes = useStyles()
 
-  // const [loaderImgLoading, setLoaderImgLoadingState] = useState(true)
-
-  // const handleOnLoad = () => {
-  //   setLoaderImgLoadingState(false)
-  // }
+  useEffect(() => {
+    loading()
+  }, [pathname])
 
   return (
-    //   <Box className={clsx(classes.loaderWrapper)}>
-    //     <img 
-    //       src={`${process.env.PUBLIC_URL}/images/loader.svg`}
-    //       alt="Loading page"
-    //       className={clsx(classes.loader, !loaderImgLoading && classes.show)}
-    //       onLoad={handleOnLoad}
-    //     />
-    //   </Box>
     routes.map((route, index) => (
       <Route 
         exact 
@@ -72,11 +41,22 @@ export default props => {
         render={props => (
           <route.component 
             {...props}
+            doneLoading={doneLoading}
           />
         )}
         key={index}
       />
     ))
   )
-
 }
+
+const PagesWithRouter = withRouter(props => {
+  return <Pages {...props} pathname={props.location.pathname} />
+})
+
+const mapActionsToProps = {
+  loading,
+  doneLoading
+}
+
+export default connect(null, mapActionsToProps)(PagesWithRouter)

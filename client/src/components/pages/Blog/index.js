@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
 
 import { Box } from '@material-ui/core'
@@ -7,9 +7,13 @@ import BlogGrid from './BlogGrid'
 
 // import useStyles from './styles'
 
-export default props => {
+export default class extends React.Component {
 
-  useEffect(() => {
+  componentDidMount() {
+
+    setTimeout(() => {
+      this.props.doneLoading()
+    }, 2000)
 
     axios
       .get('/api/blog')
@@ -17,12 +21,13 @@ export default props => {
         console.log(data.data)
       })
       .catch(error => console.log(error))
+  }
 
-  })
-
-  return (
-    <Box pt={{ xs: 10, sm: '120px' }}>
-      <BlogGrid />
-    </Box>
-  )
+  render() {
+    return (
+      <Box pt={{ xs: 10, sm: '120px' }}>
+        <BlogGrid />
+      </Box>
+    )
+  }
 }

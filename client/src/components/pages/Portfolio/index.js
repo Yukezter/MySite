@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import axios from 'axios'
 
@@ -8,20 +8,26 @@ import ProjectsGrid from './ProjectsGrid'
 
 // import useStyles from './styles'
 
-export default props => {
+export default class extends React.Component {
 
-  useEffect(() => {
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.doneLoading()
+    }, 2000)
+
     axios
       .get('/api/portfolio')
       .then(data => {
         console.log(data.data)
       })
       .catch(error => console.log(error))
-  }, [])
+  }
 
-  return (
-    <Box pt={{ xs: 10, sm: '120px' }}>
-      <ProjectsGrid />
-    </Box>
-  )
+  render() {
+    return (
+      <Box pt={{ xs: 10, sm: '120px' }}>
+        <ProjectsGrid />
+      </Box>
+    )
+  }
 }

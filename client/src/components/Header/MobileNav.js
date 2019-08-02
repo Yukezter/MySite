@@ -53,7 +53,7 @@ const FullScreenNav = props => {
   )
 }
 
-export default props => {
+const MobileNav = props => {
 
   const theme = useTheme()
   const [isOpen, setMenuState] = useState(false)
@@ -94,3 +94,5 @@ export default props => {
     </React.Fragment>
   )
 }
+
+export default MobileNav

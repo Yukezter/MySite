@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import axios from 'axios'
 
@@ -8,22 +8,28 @@ import Skills from './Skills'
 
 // import useStyles from './styles'
 
-export default props => {
+export default class extends React.Component {
 
-  useEffect(() => {
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.doneLoading()
+    }, 2000)
+
     axios
       .get('/api/home')
       .then(data => {
         console.log(data.data)
       })
       .catch(error => console.log(error))
-  }, [])
+  }
 
-  return (
-    <React.Fragment>
-      <Landing />
-      <About />
-      <Skills />
-    </React.Fragment>
-  )
+  render() {
+    return (
+      <React.Fragment>
+        <Landing />
+        <About />
+        <Skills />
+      </React.Fragment>
+    )
+  }
 }

@@ -21,7 +21,7 @@ const Logo = props => (
   </Typography>
 )
 
-export default props => {
+const DesktopNav = props => {
 
   const [scrolledDown, setNavState] = useState(false)
 
@@ -66,3 +66,5 @@ export default props => {
       </AppBar>
   )
 }
+
+export default DesktopNav

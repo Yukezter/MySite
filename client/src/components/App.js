@@ -9,7 +9,6 @@ import Routes from './pages'
 
 // Site wrapper to keep footer at bottom of body
 // Just in case some pages don't have much content
-
 const useStyles = makeStyles(theme => ({
   siteWrapper: {
     position: 'relative',
@@ -44,17 +43,21 @@ const Effects = ({ children, location: { pathname } }) => {
   return children
 }
 
-export default props => {
+const App = class extends React.Component {
 
-  return (
-    <BrowserRouter>
-      <SiteWrapper>
-        <Switch>
-          <Effects>
-            <Routes />
-          </Effects>
-        </Switch>
-      </SiteWrapper>
-    </BrowserRouter>
-  )
+  render() {
+    return (
+      <BrowserRouter>
+        <SiteWrapper>
+          <Switch>
+            <Effects>
+              <Routes />
+            </Effects>
+          </Switch>
+        </SiteWrapper>
+      </BrowserRouter>
+    )
+  }
 }
+
+export default App
