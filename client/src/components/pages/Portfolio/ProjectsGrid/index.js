@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { Box, Container, Grid, Typography, Link, Button, useTheme, useMediaQuery } from '@material-ui/core'
 
@@ -51,7 +51,7 @@ export default props => {
                         variant="h5"
                       >
                         <Link 
-                          href={project.href} 
+                          href={project.site} 
                           target="_blank"
                           className={classes.projectLink}
                         >

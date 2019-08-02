@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route } from 'react-router-dom'
-import clsx from 'clsx'
 
-import { Box } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+// import { makeStyles } from '@material-ui/styles'
 
 import Home from './Home'
 import Blog from './Blog'
@@ -24,29 +22,29 @@ const routes = [
   },
 ]
 
-const useStyles = makeStyles(theme => ({
-  loaderWrapper: {
-    position: 'absolute',
-    minHeight: '100vh',
-    width: '100%',
-    backgroundColor: theme.palette.background.default,
-    zIndex: 2000,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loader: {
-    height: 80,
-    width: 80,
-    display: 'none'
-  },
-  hide: {
-    display: 'none',
-  },
-  show: {
-    display: 'initial',
-  }
-}))
+// const useStyles = makeStyles(theme => ({
+//   loaderWrapper: {
+//     position: 'absolute',
+//     minHeight: '100vh',
+//     width: '100%',
+//     backgroundColor: theme.palette.background.default,
+//     zIndex: 2000,
+//     display: 'flex',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   loader: {
+//     height: 80,
+//     width: 80,
+//     display: 'none'
+//   },
+//   hide: {
+//     display: 'none',
+//   },
+//   show: {
+//     display: 'initial',
+//   }
+// }))
 
 export default props => {
 
