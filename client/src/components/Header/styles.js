@@ -8,7 +8,8 @@ export default makeStyles(theme => ({
     zIndex: 1000,
     backgroundColor: 'transparent',
     boxShadow: 'none',
-    transition: 'background-color 0.5s, max-height 0.5s',
+    transition: 'background-color 0.5s ease, max-height 0.5s ease',
+    willChange: 'background-color, max-height',
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'initial',      

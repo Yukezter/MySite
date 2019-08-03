@@ -1,11 +1,9 @@
 import React from 'react'
-
 import axios from 'axios'
 
 import { Box } from '@material-ui/core'
 
 import ProjectsGrid from './ProjectsGrid'
-
 // import useStyles from './styles'
 
 import projects from './ProjectsGrid/projects'
