@@ -43,12 +43,8 @@ export default props => {
           <Grid container>
             {about.map((item, index) => (
               <Grid item xs={12} sm={8} md={4} style={{ margin: '0 auto' }} key={index}>
-                <Box textAlign="center">
-                  <IconButton
-                    color="inherit"
-                    >
-                      <item.font style={{ fontSize: 50 }} />
-                  </IconButton>
+                <Box textAlign="center" my={1}>
+                  <item.font style={{ fontSize: 50 }} />
                 </Box>
                 <Box textAlign="center">
                   <Typography
