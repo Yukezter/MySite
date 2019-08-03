@@ -30,7 +30,7 @@ const FullScreenNav = props => {
   }
 
   return (
-    <Fade in={props.isOpen} timeout={200}>
+    <Fade in={props.isOpen} timeout={300}>
       <div className={props.classes.navMenu}>
         {props.links.map((link, index) => (
             <Typography
