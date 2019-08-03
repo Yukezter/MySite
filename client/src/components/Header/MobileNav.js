@@ -14,7 +14,7 @@ const MenuButton = props => {
         props.isOpen && ['is-active', props.classes.navMenuIconOpen].join(' ')
       )}
       color="inherit"
-      onClick={props.handleMenuClick}
+      onClick={props.handleMenuButton}
     >
       <span className="hamburger-box">
         <span className="hamburger-inner"></span>
@@ -23,10 +23,10 @@ const MenuButton = props => {
   )
 }
 
-const FullScreenNav = props => {
+const FadeInMenu = props => {
 
   const handleLinkClick = () => {
-    props.handleMenuClick()
+    props.handleMenuLink()
   }
 
   return (
@@ -68,7 +68,7 @@ const MobileNav = props => {
     return () => window.removeEventListener('resize', handleWindowResize)
   })
 
-  const handleMenuClick = () => {
+  const handleMenuButton = () => {
     if (isOpen) {
       document.body.style.overflow = 'visible'
       setMenuState(false)
@@ -78,17 +78,21 @@ const MobileNav = props => {
     setMenuState(true)
   }
 
+  const handleMenuLink = () => {
+    setMenuState(false)
+  }
+
   return (
     <React.Fragment>
       <MenuButton 
         classes={props.classes} 
         isOpen={isOpen} 
-        handleMenuClick={handleMenuClick} 
+        handleMenuButton={handleMenuButton} 
       />
-      <FullScreenNav
+      <FadeInMenu
         classes={props.classes}
         isOpen={isOpen}
-        handleMenuClick={handleMenuClick}
+        handleMenuLink={handleMenuLink}
         links={props.links}
       />
     </React.Fragment>
