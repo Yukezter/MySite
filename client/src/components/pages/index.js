@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react'
-import { Route, withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from 'react'
+import { Route } from 'react-router-dom'
 
 // import { makeStyles } from '@material-ui/styles'
 
 import Home from './Home'
 import Blog from './Blog'
 import Portfolio from './Portfolio'
-
-import { loading, doneLoading } from '../../actions/loadActions'
 
 const routes = [
   {
@@ -25,13 +22,9 @@ const routes = [
   },
 ]
 
-const Pages = ({ loading, doneLoading, pathname }) => {
+const Routes = ({loading, doneLoading }) => {
 
   // const classes = useStyles()
-
-  useEffect(() => {
-    loading()
-  }, [pathname])
 
   return (
     routes.map((route, index) => (
@@ -41,6 +34,7 @@ const Pages = ({ loading, doneLoading, pathname }) => {
         render={props => (
           <route.component 
             {...props}
+            loading={loading}
             doneLoading={doneLoading}
           />
         )}
@@ -50,13 +44,4 @@ const Pages = ({ loading, doneLoading, pathname }) => {
   )
 }
 
-const PagesWithRouter = withRouter(props => {
-  return <Pages {...props} pathname={props.location.pathname} />
-})
-
-const mapActionsToProps = {
-  loading,
-  doneLoading
-}
-
-export default connect(null, mapActionsToProps)(PagesWithRouter)
+export default Routes

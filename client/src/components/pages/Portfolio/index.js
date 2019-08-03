@@ -14,6 +14,19 @@ export default class extends React.Component {
     imagesLoaded: 0
    }
 
+  componentDidMount() {
+    axios
+      .get('/api/portfolio')
+      .then(data => {
+        console.log(data.data)
+      })
+      .catch(error => console.log(error))
+  }
+
+  componentWillUnmount() {
+    this.props.loading()
+  }
+
   imageLoaded = () => {
     this.setState(prevState => ({ 
       imagesLoaded: prevState.imagesLoaded + 1 
@@ -24,15 +37,6 @@ export default class extends React.Component {
         }, 2000)
       }
     })
-  }
-
-  componentDidMount() {
-    axios
-      .get('/api/portfolio')
-      .then(data => {
-        console.log(data.data)
-      })
-      .catch(error => console.log(error))
   }
 
   render() {

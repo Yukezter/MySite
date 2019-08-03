@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import { Box, makeStyles } from '@material-ui/core'
 
 import Header from './Header'
 import Footer from './Footer'
 import Routes from './pages'
+
+import { loading, doneLoading } from '../actions/loadActions'
 
 // Site wrapper to keep footer at bottom of body
 // Just in case some pages don't have much content
@@ -38,7 +41,7 @@ const Effects = ({ children, location: { pathname } }) => {
   // We want to move window back to the top of page
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [pathname])  
+  }, [pathname])
 
   return children
 }
@@ -51,7 +54,10 @@ const App = class extends React.Component {
         <SiteWrapper>
           <Switch>
             <Effects>
-              <Routes />
+              <Routes
+                loading={this.props.loading}
+                doneLoading={this.props.doneLoading}
+              />
             </Effects>
           </Switch>
         </SiteWrapper>
@@ -60,4 +66,9 @@ const App = class extends React.Component {
   }
 }
 
-export default App
+const mapActionsToProps = {
+  loading,
+  doneLoading
+}
+
+export default connect(null, mapActionsToProps)(App)

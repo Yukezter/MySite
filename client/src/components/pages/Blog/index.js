@@ -23,6 +23,10 @@ export default class extends React.Component {
       .catch(error => console.log(error))
   }
 
+  componentWillUnmount() {
+    this.props.loading()
+  }
+
   render() {
     return (
       <Box pt={{ xs: 10, sm: '120px' }}>
