@@ -12,14 +12,6 @@ export default props => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
 
-  // const [state, setState] = useState(0)
-
-  // useEffect(() => {
-  //   if (state.imagesLoaded === projects.length) { 
-  //     props.changeLoadingState(false)()
-  //   }
-  // }, [state])
-
   return (
     <section>
       <Container>
@@ -32,6 +24,7 @@ export default props => {
                     src={`${process.env.PUBLIC_URL}${project.imgSrc}`} 
                     alt={project.title}
                     className={classes.thumbnail}
+                    onLoad={props.imageLoaded}
                   />
                   <Box my={{ xs: 2 }}>
                     <Typography

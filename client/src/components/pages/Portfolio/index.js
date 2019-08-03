@@ -8,13 +8,27 @@ import ProjectsGrid from './ProjectsGrid'
 
 // import useStyles from './styles'
 
+import projects from './ProjectsGrid/projects'
+
 export default class extends React.Component {
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.doneLoading()
-    }, 2000)
+  state = { 
+    imagesLoaded: 0
+   }
 
+  imageLoaded = () => {
+    this.setState(prevState => ({ 
+      imagesLoaded: prevState.imagesLoaded + 1 
+    }), () => {
+      if (projects.length === this.state.imagesLoaded) {
+        setTimeout(() => {
+          this.props.doneLoading()
+        }, 2000)
+      }
+    })
+  }
+
+  componentDidMount() {
     axios
       .get('/api/portfolio')
       .then(data => {
@@ -26,7 +40,7 @@ export default class extends React.Component {
   render() {
     return (
       <Box pt={{ xs: 10, sm: '120px' }}>
-        <ProjectsGrid />
+        <ProjectsGrid imageLoaded={this.imageLoaded} />
       </Box>
     )
   }
