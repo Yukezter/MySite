@@ -21,14 +21,23 @@ const links = [
   }
 ]
 
-export default props => {
+export default ({ isOpen, open, close }) => {
 
   const classes = useStyles()
 
   return (
     <React.Fragment>
-      <DesktopNav classes={classes} links={links} />
-      <MobileNav classes={classes} links={links} />
+      <DesktopNav
+        classes={classes}
+        links={links}
+      />
+      <MobileNav
+        classes={classes}
+        links={links} 
+        isOpen={isOpen}
+        open={open}
+        close={close}
+      />
     </React.Fragment>
   )
 }

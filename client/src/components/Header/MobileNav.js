@@ -25,25 +25,20 @@ const MenuButton = props => {
 
 const FadeInMenu = props => {
 
-  const handleLinkClick = () => {
-    props.handleMenuLink()
-  }
-
   return (
     <Fade in={props.isOpen} timeout={500}>
       <div className={props.classes.navMenu}>
         {props.links.map((link, index) => (
             <Typography
-            className={props.classes.navHeading}
-            component="h3"
-            variant="h4"
-            noWrap
-            key={index}
+              className={props.classes.navHeading}
+              component="h3"
+              variant="h4"
+              noWrap
+              key={index}
             >
               <Link 
                 to={link.path} 
-                className={props.classes.navLink} 
-                onClick={handleLinkClick}>
+                className={props.classes.navLink}>
                 {link.text}                                    
               </Link>
             </Typography>
@@ -56,43 +51,36 @@ const FadeInMenu = props => {
 const MobileNav = props => {
 
   const theme = useTheme()
-  const [isOpen, setMenuState] = useState(false)
 
   useEffect(() => {
     const handleWindowResize = window.addEventListener('resize', e => {
-      if (e.target.innerWidth > theme.breakpoints.values.sm && isOpen) {
-        document.body.style.overflow = 'visible'
-        setMenuState(false)
+      if (e.target.innerWidth > theme.breakpoints.values.sm && props.isOpen) {
+        props.close()
       }
     })
     return () => window.removeEventListener('resize', handleWindowResize)
   })
 
   const handleMenuButton = () => {
-    if (isOpen) {
-      document.body.style.overflow = 'visible'
-      setMenuState(false)
+    if (props.isOpen) {
+    document.body.style.overflow = 'visible'
+      props.close()
       return
     }
     document.body.style.overflow = 'hidden'
-    setMenuState(true)
-  }
-
-  const handleMenuLink = () => {
-    setMenuState(false)
+    props.open()
   }
 
   return (
     <React.Fragment>
       <MenuButton 
         classes={props.classes} 
-        isOpen={isOpen} 
+        isOpen={props.isOpen} 
         handleMenuButton={handleMenuButton} 
       />
       <FadeInMenu
         classes={props.classes}
-        isOpen={isOpen}
-        handleMenuLink={handleMenuLink}
+        isOpen={props.isOpen}
         links={props.links}
       />
     </React.Fragment>

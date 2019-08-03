@@ -22,7 +22,7 @@ const routes = [
   },
 ]
 
-const Routes = ({loading, doneLoading }) => {
+const Routes = ({loading, doneLoading, isOpen, close }) => {
 
   // const classes = useStyles()
 
@@ -36,6 +36,8 @@ const Routes = ({loading, doneLoading }) => {
             {...props}
             loading={loading}
             doneLoading={doneLoading}
+            isOpen={isOpen}
+            close={close}
           />
         )}
         key={index}

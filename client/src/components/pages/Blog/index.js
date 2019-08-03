@@ -25,6 +25,9 @@ export default class extends React.Component {
 
   componentWillUnmount() {
     this.props.loading()
+    if (this.props.isOpen) {
+      this.props.close()
+    }
   }
 
   render() {

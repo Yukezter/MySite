@@ -9,6 +9,7 @@ import Footer from './Footer'
 import Routes from './pages'
 
 import { loading, doneLoading } from '../actions/loadActions'
+import { open, close } from '../actions/mobileNavActions'
 
 // Site wrapper to keep footer at bottom of body
 // Just in case some pages don't have much content
@@ -22,11 +23,15 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const SiteWrapper = ({ children }) => {
+const SiteWrapper = ({ children, isOpen, open, close }) => {
   const classes = useStyles()
   return (
     <Box className={classes.siteWrapper}>
-      <Header />
+      <Header 
+        isOpen={isOpen}
+        open={open}
+        close={close}
+      />
         <Box className={classes.contentWrapper}>
           {children}
         </Box>
@@ -49,14 +54,20 @@ const Effects = ({ children, location: { pathname } }) => {
 const App = class extends React.Component {
 
   render() {
+    const { loading, doneLoading, isOpen, open, close } = this.props
     return (
       <BrowserRouter>
-        <SiteWrapper>
+        <SiteWrapper 
+          isOpen={isOpen}
+          open={open}
+          close={close}>
           <Switch>
             <Effects>
               <Routes
-                loading={this.props.loading}
-                doneLoading={this.props.doneLoading}
+                loading={loading}
+                doneLoading={doneLoading}
+                isOpen={isOpen}
+                close={close}
               />
             </Effects>
           </Switch>
@@ -66,9 +77,15 @@ const App = class extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isOpen: state.mobileNav.open
+})
+
 const mapActionsToProps = {
   loading,
-  doneLoading
+  doneLoading,
+  open,
+  close
 }
 
-export default connect(null, mapActionsToProps)(App)
+export default connect(mapStateToProps, mapActionsToProps)(App)
