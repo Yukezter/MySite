@@ -56,6 +56,7 @@ const MobileNav = props => {
     const handleWindowResize = window.addEventListener('resize', e => {
       if (e.target.innerWidth > theme.breakpoints.values.sm && props.isOpen) {
         props.close()
+        document.body.style.overflow = 'visible'
       }
     })
     return () => window.removeEventListener('resize', handleWindowResize)
