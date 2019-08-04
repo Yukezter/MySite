@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
@@ -64,7 +64,7 @@ const MobileNav = props => {
 
   const handleMenuButton = () => {
     if (props.isOpen) {
-    document.body.style.overflow = 'visible'
+      document.body.style.overflow = 'visible'
       props.close()
       return
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Typography, Container, Grid, IconButton, Box } from '@material-ui/core'
+import { Typography, Container, Grid, Box } from '@material-ui/core'
 import { Class, Folder, School } from '@material-ui/icons'
 
 // import useStyles from './styles'

@@ -41,7 +41,6 @@ const SiteWrapper = ({ children, isOpen, open, close }) => {
 }
 
 const Effects = ({ children, location: { pathname } }) => {
-
   // Whenever BrowserRouter path changes,
   // We want to move window back to the top of page
   useEffect(() => {
